@@ -74,12 +74,12 @@ cd backend
 
 2. Build the project with Maven:
 ```bash
-mvn clean install
+.\mvnw clean install
 ```
 
 3. Run the Spring Boot application:
 ```bash
-mvn spring-boot:run
+.\mvnw spring-boot:run
 ```
 
 The backend server will start on `http://localhost:8080`
