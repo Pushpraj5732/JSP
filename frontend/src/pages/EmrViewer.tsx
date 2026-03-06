@@ -1,142 +1,139 @@
-import { Download, ChevronLeft, Droplet, Heart, Activity, Thermometer } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { useState } from 'react';
+import { FileText, ChevronDown, ChevronUp } from 'lucide-react';
 
-const EmrViewer = () => {
+interface EmrRecord {
+    id: string;
+    date: string;
+    doctor: string;
+    diagnosis: string;
+    symptoms: string[];
+    prescription: string[];
+    severity: 'HIGH' | 'MODERATE' | 'LOW';
+    treatmentNotes: string;
+    followUp?: string;
+}
+
+export default function EmrViewer() {
+    const [filter, setFilter] = useState<string>('ALL');
+    const [expanded, setExpanded] = useState<string | null>(null);
+    const [records] = useState<EmrRecord[]>([]);
+
+    const severityBar = (s: string) => {
+        if (s === 'HIGH') return 'border-l-brand-red bg-primary';
+        if (s === 'MODERATE') return 'border-l-brand-orange bg-accent';
+        return 'border-l-brand-green bg-secondary';
+    };
+
+    const severityBadge = (s: string) => {
+        if (s === 'HIGH') return 'badge-red';
+        if (s === 'MODERATE') return 'badge-orange';
+        return 'badge-green';
+    };
+
+    const filters = ['ALL', 'LOW', 'MODERATE', 'HIGH'];
+
     return (
-        <div className="min-h-screen bg-parchment p-4 md:p-8 font-sans page-transition">
-            <div className="max-w-4xl mx-auto">
-                {/* Navigation & Actions */}
-                <div className="flex justify-between items-center mb-8">
-                    <Link to="/patient" className="text-text-secondary hover:text-forest flex items-center gap-2 text-sm font-medium transition-colors">
-                        <ChevronLeft className="w-4 h-4" /> Back to Portal
-                    </Link>
-                    <button className="bg-white border border-border text-forest px-4 py-2 rounded-lg text-sm font-medium flex items-center gap-2 hover:bg-forest hover:text-white transition-all shadow-sm">
-                        <Download className="w-4 h-4" /> Print / Download
-                    </button>
+        <div className="page-enter max-w-4xl mx-auto">
+            <h1 className="font-heading font-bold text-[32px] text-txt-primary mb-6">Medical Records</h1>
+
+            {/* Filters */}
+            <div className="flex flex-col sm:flex-row gap-4 mb-6">
+                <div className="flex gap-2 items-center">
+                    <input type="date" className="input py-2 text-sm w-auto" />
+                    <span className="font-body text-sm text-txt-muted">to</span>
+                    <input type="date" className="input py-2 text-sm w-auto" />
                 </div>
-
-                {/* EMR Document Container */}
-                <div className="bg-white rounded-xl border border-border shadow-md overflow-hidden print:shadow-none print:border-none">
-                    {/* Header Bar */}
-                    <div className="bg-forest-dark text-parchment p-8">
-                        <div className="flex justify-between items-end">
-                            <div>
-                                <h1 className="font-serif font-bold text-4xl mb-2">Rahul Mehta</h1>
-                                <div className="flex items-center gap-4 text-sm font-mono text-parchment/80">
-                                    <span>ID: VCHN-008272</span>&bull;
-                                    <span>Aadhar Verified</span>
-                                </div>
-                            </div>
-                            <div className="text-right text-sm font-sans space-y-1">
-                                <div>Age: 42 Years</div>
-                                <div>Gender: Male</div>
-                                <div>Blood Group: O+</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className="p-8">
-                        {/* Vitals Section */}
-                        <div className="flex items-center gap-2 mb-4">
-                            <h2 className="font-serif font-bold text-xl text-forest-dark uppercase tracking-widest border-b-2 border-turmeric pb-1 inline-block">Vital Signs</h2>
-                        </div>
-                        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10">
-                            <div className="bg-parchment-dark rounded-xl p-4 border border-border/50 text-center">
-                                <Heart className="w-5 h-5 text-terracotta mx-auto mb-2" />
-                                <p className="text-xs text-text-secondary uppercase tracking-widest mb-1">Blood Pressure</p>
-                                <h3 className="font-serif font-bold text-xl text-text-primary">120/80</h3>
-                            </div>
-                            <div className="bg-parchment-dark rounded-xl p-4 border border-border/50 text-center">
-                                <Activity className="w-5 h-5 text-forest mx-auto mb-2" />
-                                <p className="text-xs text-text-secondary uppercase tracking-widest mb-1">Pulse Rate</p>
-                                <h3 className="font-serif font-bold text-xl text-text-primary">72 bpm</h3>
-                            </div>
-                            <div className="bg-parchment-dark rounded-xl p-4 border border-border/50 text-center">
-                                <Thermometer className="w-5 h-5 text-alert mx-auto mb-2" />
-                                <p className="text-xs text-text-secondary uppercase tracking-widest mb-1">Weight</p>
-                                <h3 className="font-serif font-bold text-xl text-text-primary">76 kg</h3>
-                            </div>
-                            <div className="bg-terracotta/10 rounded-xl p-4 border border-terracotta/30 text-center relative overflow-hidden">
-                                <div className="absolute top-0 right-0 w-8 h-8 bg-terracotta rotate-45 translate-x-4 -translate-y-4"></div>
-                                <Droplet className="w-5 h-5 text-terracotta mx-auto mb-2" />
-                                <p className="text-xs text-terracotta uppercase tracking-widest mb-1 font-bold">Dosha Type</p>
-                                <h3 className="font-serif font-bold text-xl text-terracotta">Vata</h3>
-                            </div>
-                        </div>
-
-                        {/* Diagnosis */}
-                        <div className="mb-10">
-                            <h2 className="font-serif font-bold text-xl text-forest-dark uppercase tracking-widest mb-4">Primary Diagnosis</h2>
-                            <div className="bg-parchment-dark p-4 rounded-lg border-l-4 border-forest-dark text-text-primary leading-relaxed text-sm">
-                                Patient presents with Kati Shula (Lower Back Pain) extending to the left radicular path. Primary dosha imbalance identified as Vata Vyadhi due to sedentary lifestyle and recent acute strain.
-                            </div>
-                        </div>
-
-                        {/* Prescription Table */}
-                        <div className="mb-10">
-                            <h2 className="font-serif font-bold text-xl text-forest-dark uppercase tracking-widest mb-4">Prescribed Medicines</h2>
-                            <div className="border border-border rounded-lg overflow-hidden">
-                                <table className="w-full text-left text-sm">
-                                    <thead className="bg-forest-dark text-parchment font-sans uppercase text-xs tracking-wider">
-                                        <tr>
-                                            <th className="p-4 font-medium">Medicine Name</th>
-                                            <th className="p-4 font-medium">Dosage</th>
-                                            <th className="p-4 font-medium">Frequency</th>
-                                            <th className="p-4 font-medium">Instructions</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody className="divide-y divide-border font-sans">
-                                        <tr className="bg-white">
-                                            <td className="p-4 font-medium text-text-primary">Dashamoola Kashayam</td>
-                                            <td className="p-4 text-text-secondary">15 ml</td>
-                                            <td className="p-4 text-text-secondary">Twice Daily</td>
-                                            <td className="p-4 text-text-secondary">Before meals with equal water</td>
-                                        </tr>
-                                        <tr className="bg-parchment-dark">
-                                            <td className="p-4 font-medium text-text-primary">Yogaraja Guggulu</td>
-                                            <td className="p-4 text-text-secondary">2 Tablets</td>
-                                            <td className="p-4 text-text-secondary">Twice Daily</td>
-                                            <td className="p-4 text-text-secondary">After meals with lukewarm water</td>
-                                        </tr>
-                                        <tr className="bg-white">
-                                            <td className="p-4 font-medium text-text-primary">Mahanarayana Taila</td>
-                                            <td className="p-4 text-text-secondary">Q.S.</td>
-                                            <td className="p-4 text-text-secondary">Once Daily</td>
-                                            <td className="p-4 text-text-secondary">External application (Kati Basti locally)</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-
-                        {/* Doctors Notes */}
-                        <div className="mb-10">
-                            <h2 className="font-serif font-bold text-xl text-forest-dark uppercase tracking-widest mb-4">Doctor's Clinical Notes</h2>
-                            <blockquote className="bg-white p-6 border-l-4 border-l-terracotta rounded-r-xl shadow-sm italic font-serif text-lg leading-relaxed text-text-secondary border-y border-r border-border/50">
-                                Patient advised to avoid cold exposure and vata-aggravating foods (beans, cabbage, dry snacks). Continue gentle stretching and rest for 5 days. Follow up after 2 weeks for Kati Basti review.
-                            </blockquote>
-                        </div>
-
-                        {/* Signatures */}
-                        <div className="mt-16 flex justify-between items-end border-t border-border pt-8">
-                            <div className="text-sm font-sans text-text-secondary">
-                                <p>Generated on: Oct 24, 2023 10:45 AM</p>
-                                <p className="mt-1 text-xs">Digitally signed via VaidyaConnect Gateway</p>
-                            </div>
-                            <div className="text-center">
-                                <div className="font-serif text-2xl text-terracotta/40 italic mb-2">Dr. Ananya Sharma</div>
-                                <div className="w-48 h-px bg-text-primary mb-2"></div>
-                                <p className="font-serif font-bold text-forest-dark">Dr. Ananya Sharma</p>
-                                <p className="text-xs font-sans text-text-secondary">BAMS, MD (Ayurveda)</p>
-                                <p className="text-xs font-mono text-text-secondary mt-1">Reg No: AYU-92384</p>
-                            </div>
-                        </div>
-
-                    </div>
+                <div className="flex gap-1.5 ml-auto">
+                    {filters.map((f) => (
+                        <button
+                            key={f}
+                            onClick={() => setFilter(f)}
+                            className={`px-3 py-1.5 rounded text-xs font-heading font-semibold transition-all cursor-pointer border ${filter === f
+                                ? 'bg-dark text-white border-dark'
+                                : 'bg-white text-txt-muted border-border hover:border-dark/30'
+                                }`}
+                        >
+                            {f}
+                        </button>
+                    ))}
                 </div>
             </div>
+
+            {/* Records */}
+            {records.length === 0 ? (
+                <div className="card-flat flex flex-col items-center justify-center py-16">
+                    <FileText className="w-10 h-10 text-txt-muted mb-3" />
+                    <p className="font-body text-sm text-txt-muted">No medical records found</p>
+                    <p className="font-mono text-xs text-txt-muted mt-1">Records will appear here after doctor visits</p>
+                </div>
+            ) : (
+                <div className="space-y-4">
+                    {records
+                        .filter((r) => filter === 'ALL' || r.severity === filter)
+                        .map((record) => (
+                            <div key={record.id} className="card-flat overflow-hidden relative">
+                                {/* Severity Bar */}
+                                <div className={`absolute left-0 top-0 bottom-0 w-1 ${severityBar(record.severity)}`} />
+
+                                {/* Header */}
+                                <div className="flex items-start justify-between pl-4">
+                                    <div>
+                                        <div className="flex items-center gap-3 mb-1">
+                                            <p className="font-mono text-xs text-txt-muted">{record.date}</p>
+                                            <span className={`badge ${severityBadge(record.severity)} text-[10px]`}>{record.severity}</span>
+                                        </div>
+                                        <p className="font-heading font-semibold text-[15px] text-txt-primary">{record.doctor}</p>
+                                    </div>
+                                    <button
+                                        onClick={() => setExpanded(expanded === record.id ? null : record.id)}
+                                        className="text-txt-muted hover:text-txt-primary cursor-pointer"
+                                    >
+                                        {expanded === record.id ? <ChevronUp className="w-5 h-5" /> : <ChevronDown className="w-5 h-5" />}
+                                    </button>
+                                </div>
+
+                                {/* Expanded Content */}
+                                {expanded === record.id && (
+                                    <div className="pl-4 mt-4 pt-4 border-t border-border space-y-4 animate-fade-up">
+                                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                            <div>
+                                                <p className="font-heading font-semibold text-xs text-txt-muted uppercase tracking-wider mb-1">Diagnosis</p>
+                                                <p className="font-body text-sm text-txt-primary">{record.diagnosis}</p>
+                                            </div>
+                                            <div>
+                                                <p className="font-heading font-semibold text-xs text-txt-muted uppercase tracking-wider mb-1">Symptoms</p>
+                                                <div className="flex flex-wrap gap-1.5">
+                                                    {record.symptoms.map((s, i) => (
+                                                        <span key={i} className="px-2 py-0.5 bg-surface-alt border border-border rounded text-xs font-body text-txt-body">{s}</span>
+                                                    ))}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <p className="font-heading font-semibold text-xs text-txt-muted uppercase tracking-wider mb-1">Prescription</p>
+                                            <ul className="space-y-1">
+                                                {record.prescription.map((p, i) => (
+                                                    <li key={i} className="font-mono text-sm text-txt-body">• {p}</li>
+                                                ))}
+                                            </ul>
+                                        </div>
+                                        {record.treatmentNotes && (
+                                            <div className="bg-surface-alt border-l-[3px] border-dark px-4 py-3 rounded-r">
+                                                <p className="font-heading font-semibold text-xs text-txt-muted uppercase tracking-wider mb-1">AYUSH Treatment Notes</p>
+                                                <p className="font-body text-sm text-txt-body italic">{record.treatmentNotes}</p>
+                                            </div>
+                                        )}
+                                        {record.followUp && (
+                                            <div className="flex justify-end">
+                                                <span className="badge badge-blue text-xs">Follow-up: {record.followUp}</span>
+                                            </div>
+                                        )}
+                                    </div>
+                                )}
+                            </div>
+                        ))}
+                </div>
+            )}
         </div>
     );
-};
-
-export default EmrViewer;
+}

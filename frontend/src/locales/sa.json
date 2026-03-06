@@ -1,0 +1,61 @@
+{
+    "app": {
+        "name": "आयुष स्वास्थ्य सेवा",
+        "tagline": "भवतः स्वास्थ्यं, अस्माकं प्राधान्यम्"
+    },
+    "nav": {
+        "dashboard": "मुख्यपृष्ठम्",
+        "hospitals": "चिकित्सालयाः",
+        "doctors": "वैद्याः",
+        "appointments": "मेलनसमयाः",
+        "myAppointments": "मम मेलनसमयाः",
+        "profile": "विवरणम्",
+        "logout": "बहिर्गमनम्",
+        "login": "प्रवेशः",
+        "register": "पंजीकरणम्"
+    },
+    "auth": {
+        "email": "ईपत्रम्",
+        "password": "गुप्तशब्दः",
+        "confirmPassword": "गुप्तशब्दं प्रमाणीकरोतु",
+        "name": "पूर्णनाम",
+        "phone": "दूरभाषसङ्ख्या",
+        "role": "भूमिका",
+        "selectRole": "भूमिकां चिनोतु",
+        "patient": "रोगी",
+        "doctor": "वैद्यः",
+        "admin": "प्रशासकः",
+        "loginTitle": "स्वागतम्",
+        "loginSubtitle": "कृपया प्रविशन्तु",
+        "registerTitle": "खाता निर्माणम्",
+        "registerSubtitle": "उत्तमस्वास्थ्याय अस्माभिः सह युज्यन्ताम्",
+        "noAccount": "खाता नास्ति वा?",
+        "haveAccount": "किं पूर्वमेव खाता अस्ति?",
+        "loginSuccess": "प्रवेशः सफलः!",
+        "registerSuccess": "पंजीकरणं सफलम्!",
+        "invalidCredentials": "अमान्यं ईपत्रं वा गुप्तशब्दः",
+        "fillAllFields": "कृपया सर्वाणि क्षेत्राणि पूरयन्तु"
+    },
+    "dashboard": {
+        "welcome": "स्वागतम्",
+        "patientTitle": "रोगिणः मुख्यपृष्ठम्",
+        "doctorTitle": "वैद्यस्य मुख्यपृष्ठम्",
+        "adminTitle": "प्रशासकस्य मुख्यपृष्ठम्",
+        "totalHospitals": "कुलं चिकित्सालयाः",
+        "totalDoctors": "कुलं वैद्याः",
+        "totalAppointments": "कुलं मेलनसमयाः",
+        "upcomingAppointments": "आगामिनः मेलनसमयाः",
+        "recentActivity": "नूतनकार्यकलापाः",
+        "quickActions": "त्वरितकार्याणि",
+        "bookAppointment": "मेलनसमयम् आरक्षतु",
+        "viewHospitals": "चिकित्सालयान् पश्यन्तु",
+        "viewDoctors": "वैद्यान् पश्यन्तु"
+    },
+    "language": {
+        "select": "भाषाम् चिनोतु",
+        "english": "English",
+        "hindi": "हिन्दी",
+        "gujarati": "ગુજરાતી",
+        "sanskrit": "संस्कृतम्"
+    }
+}

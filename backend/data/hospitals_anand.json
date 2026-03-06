@@ -1,0 +1,123 @@
+[
+  {
+    "id": 1,
+    "hospitalName": "IRIS Hospital",
+    "latitude": 22.5645,
+    "longitude": 72.9452,
+    "address": "Anand, Gujarat",
+    "category": "general",
+    "source": "google_verified",
+    "contactNumber": "02692-200001",
+    "beds": 50
+  },
+  {
+    "id": 2,
+    "hospitalName": "Himalaya Hospital",
+    "latitude": 22.5625,
+    "longitude": 72.9486,
+    "address": "Anand, Gujarat",
+    "category": "general",
+    "source": "google_verified",
+    "contactNumber": "02692-200002",
+    "beds": 40
+  },
+  {
+    "id": 3,
+    "hospitalName": "Spandan Hospital",
+    "latitude": 22.5623,
+    "longitude": 72.9484,
+    "address": "Anand, Gujarat",
+    "category": "general",
+    "source": "google_verified",
+    "contactNumber": "02692-200003",
+    "beds": 35
+  },
+  {
+    "id": 4,
+    "hospitalName": "Sanskar Women's Hospital",
+    "latitude": 22.5639,
+    "longitude": 72.9610,
+    "address": "Vallabh Vidyanagar, Anand",
+    "category": "general",
+    "source": "google_verified",
+    "contactNumber": "02692-200004",
+    "beds": 30
+  },
+  {
+    "id": 5,
+    "hospitalName": "Zydus Hospital, Anand",
+    "latitude": 22.5539,
+    "longitude": 72.9365,
+    "address": "Anand-Lambhvel Road, Anand",
+    "category": "general",
+    "source": "google_verified",
+    "contactNumber": "02692-200005",
+    "beds": 150
+  },
+  {
+    "id": 6,
+    "hospitalName": "Shree Krishna Hospital, Karamsad",
+    "latitude": 22.5366,
+    "longitude": 72.9112,
+    "address": "Karamsad, Anand District, Gujarat",
+    "category": "general",
+    "source": "google_verified",
+    "contactNumber": "02692-200006",
+    "beds": 800
+  },
+  {
+    "id": 7,
+    "hospitalName": "Lifeline Hospital, Anand",
+    "latitude": 22.5417,
+    "longitude": 72.9348,
+    "address": "Anand, Gujarat",
+    "category": "general",
+    "source": "google_verified",
+    "contactNumber": "02692-200007",
+    "beds": 60
+  },
+  {
+    "id": 8,
+    "hospitalName": "Aayush Ayurveda Centre",
+    "latitude": 22.6372,
+    "longitude": 72.8906,
+    "address": "Anand District, Gujarat",
+    "category": "ayush",
+    "source": "google_verified",
+    "contactNumber": "02692-200008",
+    "beds": 20
+  },
+  {
+    "id": 9,
+    "hospitalName": "Ayurveda Hospital, Nadiad",
+    "latitude": 22.6903,
+    "longitude": 72.8711,
+    "address": "Nadiad, Gujarat",
+    "category": "ayush",
+    "source": "google_verified",
+    "contactNumber": "02692-200009",
+    "beds": 100
+  },
+  {
+    "id": 10,
+    "hospitalName": "Sushrut Sanjeevani Hospital & Panchkarma Centre",
+    "latitude": 22.5645,
+    "longitude": 72.9358,
+    "address": "Anand, Gujarat",
+    "category": "ayush",
+    "source": "google_verified",
+    "contactNumber": "02692-200010",
+    "beds": 25
+  },
+  {
+    "id": 11,
+    "hospitalName": "Surajben Govindbhai Patel Ayurveda Hospital",
+    "latitude": 22.5204,
+    "longitude": 72.9248,
+    "address": "New Vallabh Vidyanagar, Anand",
+    "category": "ayush",
+    "source": "google_verified",
+    "contactNumber": "02692-200011",
+    "beds": 50
+  }
+]
